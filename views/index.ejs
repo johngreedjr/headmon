@@ -12,8 +12,6 @@
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-
 
     <script type="text/javascript" src="/app.js"></script>
     <script type="text/javascript" src="/entry/mainCtrl.js"></script>
@@ -22,16 +20,10 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker').datetimepicker();
-        });
-    </script>
+
   </head>
   <body ng-app="headmonApp" ng-controller="mainCtrl" ng-cloak>
     <h1 class="main-title">Headmon</h1>
-
     <form>
       <div class="row">
         <div class="col-sm-6 col-xs-12">
@@ -73,23 +65,15 @@
       </div>
       <div class="row">
         <div class="col-sm-6 col-xs-12">
-          <div class="form-group">
-            <label for="datetimepicker">Date</label>
-              <div class='input-group date' id='datetimepicker'>
-                  <input type='text' class="form-control" ng-model="model.date" />
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-          </div>
+            <div uib-datepicker ng-model="model.date" class="well" datepicker-options="options"></div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+      <button type="submit" class="btn btn-primary" ng-click="submit(model)">Submit</button>
     </form>
 
-    <h3>Log</h3>
-    <div class="entry-list" ng-repeat="entry in entries">
-      {{entry.createdAt}} - {{entry.painLevel}} - {{entry.notes}}
+    <h3>Records</h3>
+    <div class="entry-list" ng-repeat="entry in entries | orderBy:'-date'">
+      {{entry.date}} - {{entry.painLevel}} - {{entry.notes}}
     </div>
   </body>
 </html>

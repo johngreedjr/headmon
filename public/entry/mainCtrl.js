@@ -9,6 +9,11 @@
     //display entries
     $scope.entries = entry.api().query();
 
+    $scope.submit = function(model) {
+      entry.api().save(model, function(){
+        $scope.entries = entry.api().query();
+      });
+    }
   }
 
 })(angular);
