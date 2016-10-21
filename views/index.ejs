@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Oswald" rel="stylesheet">
 
   </head>
   <body ng-app="headmonApp" ng-controller="mainCtrl" ng-cloak>
@@ -71,9 +73,16 @@
       <button type="submit" class="btn btn-primary" ng-click="submit(model)">Submit</button>
     </form>
 
-    <h3>Records</h3>
+    <h3 class="main-title">Records</h3>
     <div class="entry-list" ng-repeat="entry in entries | orderBy:'-date'">
-      {{entry.date}} - {{entry.painLevel}} - {{entry.notes}}
+      <div ng-class-odd="'odd'">
+        <div class="row">
+          <i class="fa fa-calendar"></i> {{entry.date | date:mediumDate }} <i class="fa fa-area-chart"></i> {{entry.painLevel}} <i class="fa fa-medkit"></i> {{entry.medsTaken}}
+        </div>
+        <div class="row" ng-if="entry.notes">
+          <i class="fa fa-sticky-note-o"></i> {{entry.notes}}
+        </div>
+      </div>
     </div>
   </body>
 </html>

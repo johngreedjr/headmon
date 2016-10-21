@@ -1,3 +1,17 @@
 body {
   padding: 50px;
 }
+
+.main-title {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+.entry-list {
+  text-align: center;
+  font-family: 'Droid Serif', serif;
+}
+
+.odd {
+  background-color: #f0f5f5;
+}
