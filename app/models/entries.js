@@ -1,7 +1,8 @@
 var mongoose  = require('mongoose'),
     Schema    = mongoose.Schema;
 
-var dataSchema = mongoose.Schema({
+var entriesSchema = mongoose.Schema({
+  "status": { "type" : Number, "default" : 1 },
   "painLevel": Number,
   "date": Date,
   "notes": String
@@ -9,4 +10,4 @@ var dataSchema = mongoose.Schema({
   timestamps : true
 });
 
-module.exports = mongoose.model('data', dataSchema);
+module.exports = mongoose.model('entries', entriesSchema);
