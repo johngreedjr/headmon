@@ -6,7 +6,8 @@
 
   function MainCtrl($scope, entry) {
 
-
+    //display entries
+    $scope.entries = entry.api().query();
 
   }
 

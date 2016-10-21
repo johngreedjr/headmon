@@ -7,57 +7,57 @@ api.use(function(req, res, next) {
 	next();
 });
 
-api.get('/entries', function(req, res, next) {
+api.get('/entry', function(req, res, next) {
     Entries
     .find({ status: 1 })
-    .exec(function(err, entries) {
+    .exec(function(err, entry) {
       if (err)
         console.log(err.stack);
-      res.json(entries);
+      res.json(entry);
     });
 });
 
-api.get('/entries/:id', function(req, res, next) {
+api.get('/entry/:id', function(req, res, next) {
   Entries
     .findById(req.params.id)
-    .exec(function(err, entries) {
+    .exec(function(err, entry) {
       if (err)
         console.log(err.stack);
-      res.json(entries);
+      res.json(entry);
   });
 });
 
-api.post('/entries', function(req, res) {
+api.post('/entry', function(req, res) {
   if (req.body._id) {
     Entries
       .findOneAndUpdate({ _id : req.body._id }, req.body, { "new" : true })
       .select('-statusId')
-      .exec(function (err, entries) {
+      .exec(function (err, entry) {
         if (err)
           console.log(err.stack);
-        res.send(entries);
+        res.send(entry);
       });
   } else {
     Entries
-      .create(req.body, function(err, entries) {
+      .create(req.body, function(err, entry) {
         if (err)
           console.log(err.stack);
-        res.send(entries);
+        res.send(entry);
       });
   }
 });
 
-api.put('/', function(req, res){
+api.put('/entry', function(req, res){
   Entries
     .findOneAndUpdate({ _id : req.body._id }, req.body, { "new" : true })
-    .exec(function (err, entries) {
+    .exec(function (err, entry) {
       if (err)
         console.log(err.stack);
-      res.send(entries);
+      res.send(entry);
     });
 });
 
-api.delete('/entries/:id', function(req, res) {
+api.delete('/entry/:id', function(req, res) {
   req.body.status = 2;
   Entries
     .findByIdAndUpdate(req.params.id, req.body)
