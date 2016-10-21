@@ -5,6 +5,7 @@ var entriesSchema = mongoose.Schema({
   "status": { "type" : Number, "default" : 1 },
   "painLevel": Number,
   "date": Date,
+  "medsTaken": String,
   "notes": String
 }, {
   timestamps : true

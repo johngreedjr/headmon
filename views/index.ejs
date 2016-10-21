@@ -9,6 +9,11 @@
     <script type="text/javascript" src="/bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="/bower_components/angular-filter/dist/angular-filter.min.js"></script>
     <script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
 
     <script type="text/javascript" src="/app.js"></script>
     <script type="text/javascript" src="/entry/mainCtrl.js"></script>
@@ -17,10 +22,73 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-
+    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker').datetimepicker();
+        });
+    </script>
   </head>
   <body ng-app="headmonApp" ng-controller="mainCtrl" ng-cloak>
-    <div ng-repeat="entry in entries">
+    <h1 class="main-title">Headmon</h1>
+
+    <form>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <div class="radio">
+            <label>
+              <input type="radio" name="painLevel" ng-model="model.painLevel" id="painLevel" value="1">
+              1 - Dull/Minor Nuisance
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="painLevel" ng-model="model.painLevel" id="painLevel" value="2">
+              2 - Average
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="painLevel" ng-model="model.painLevel" id="painLevel" value="3">
+              3 - Severe/Trouble Functioning
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label for="medsTaken">Medication Taken</label>
+            <input type="text" class="form-control" id="medsTaken" ng-model="model.medsTaken" placeholder="Medication Taken">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label for="Notes">Notes</label>
+            <textarea type="textarea" rows="3" class="form-control" id="Notes" ng-model="model.notes" placeholder="Notes"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label for="datetimepicker">Date</label>
+              <div class='input-group date' id='datetimepicker'>
+                  <input type='text' class="form-control" ng-model="model.date" />
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+    </form>
+
+    <h3>Log</h3>
+    <div class="entry-list" ng-repeat="entry in entries">
       {{entry.createdAt}} - {{entry.painLevel}} - {{entry.notes}}
     </div>
   </body>
