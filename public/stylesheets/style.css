@@ -2,6 +2,16 @@ body {
   padding: 50px;
 }
 
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  .well {
+    padding: 0px;
+    width: 288px;
+  }
+}
+
 .main-title {
   text-align: center;
   font-family: 'Oswald', sans-serif;
